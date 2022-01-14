@@ -1,8 +1,9 @@
 '''
 将查询到的东北方言进行朗读
 使用TTS语音引擎
+Author： Nigel Chen
+Date：14/01/2022
 '''
-
 
 import winsound
 import win32com
@@ -12,7 +13,7 @@ from win32com.client import Dispatch,constants
 speak_out = win32com.client.Dispatch('sapi.spvoice')
 lang = {"埋汰":"脏","卡了":"摔倒，栽跟头了","磕碜":"难看","嘎哈":"有什么事","上该里溜达":"上街上，到处闲逛","唠嗑":"谈话，聊天","稀罕":"喜欢","白唬":"瞎说，不着边际"}
 
-# 按照字典值，定时顺序输出东北方言的函数view（），间隔为1秒
+# 按照字典值，定时顺序输出东北方言的函数view（）
 
 def view():
     for key,value in lang.items():
