@@ -1,6 +1,8 @@
 '''
 
 100以内加减法混合出题
+Author: Nigel Chen
+Date: 17/01/2022
 '''
 
 import random
