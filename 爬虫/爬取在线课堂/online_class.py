@@ -1,6 +1,8 @@
 '''
 爬网易在线课堂关于python的课程
 运用xlsxwrite写到excel文档中
+Author: Nigel Chen
+Date: 21/01/2022
 '''
 import requests
 import xlsxwriter
