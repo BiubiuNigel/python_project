@@ -29,29 +29,12 @@ def get_json(index):
 
     #header 信息
     headers = {
-        "accept":"application/json",
-        "accept-encoding":"gzip, deflate, br",
-        "accept-language":"zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7",
-        "content-length":164,
-        "content-type":	"application/json",
-        "cookie":	"_ntes_nnid=5d59af48dc43b15e0257c695c010981a,1624516848001; _ntes_nuid=5d59af48dc43b15e0257c695c010981a; nts_mail_user=nigelc666@163.com:-1:1; NTES_CMT_USER_INFO=468788058%7C%E6%9C%89%E6%80%81%E5%BA%A6%E7%BD%91%E5%8F%8B0rYidq%7Chttp%3A%2F%2Fcms-bucket.nosdn.127.net%2F2018%2F08%2F13%2F078ea9f65d954410b62a52ac773875a1.jpeg%7Cfalse%7CbmlnZWxjNjY2QDE2My5jb20%3D; hb_MA-8E16-605C3AFFE11F_source=www.baidu.com; hb_MA-9ADA-91BF1A6C9E06_source=www.baidu.com; vjuids=-70179bf05.17e19afd2c8.0.bbe6f3043c03f; vjlast=1641108460.1641108460.30; NTES_P_UTID=AVgDvLUtZS1liza9y4joXrGzGUzKq8Yx|1641803944; P_INFO=18667925567|1642315150|0|rms|00&99|zhj&1642140864&rms#zhj&330100#10#0#0|&0|null|18667925567; NTESSTUDYSI=645e6972a16d4ea4a8e6944de4d9c415; EDUWEBDEVICE=227beb57c7444ed4b45aa9c91b08e949; EDU-YKT-MODULE_GLOBAL_PRIVACY_DIALOG=true; sideBarPost=1736; utm=eyJjIjoiIiwiY3QiOiIiLCJpIjoiIiwibSI6IiIsInMiOiIiLCJ0IjoiIn0=|aHR0cHM6Ly9zdHVkeS4xNjMuY29tLw==; STUDY_UUID=ae793cb9-335d-405a-b9f2-782e1db619af",
-        "edu-script-token":	"645e6972a16d4ea4a8e6944de4d9c415",
-        "origin":	"https://study.163.com",
-        "referer":	"https://study.163.com/courses-search?keyword=python",
-        "sec-ch-ua":	'"Chromium";v="92", " Not A;Brand";v="99", "Google Chrome";v="92"',
-        "sec-ch-ua-mobile":	"?0",
-        "sec-fetch-dest":	"empty",
-        "sec-fetch-mode":	"cors",
-        "sec-fetch-site":	"same-origin",
-        "user-agent":	"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.159 Safari/537.36"
-    '''
         "accept": "application/json",
         "host" : "study.163.com",
         "content-type": "application/json",
         "origin": "https://study.163.com",
         "user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.159 Safari/537.36",
         "Connection":"keep-alive"
-    '''
     }
 
     try:
@@ -92,7 +75,7 @@ def save_excel(content,index):
 
     for num,item in enumerate(content):
         row = 50 *index+(num+1)
-        worksheet.write(row, 0,item['productID'])
+        worksheet.write(row, 0,item['productId'])
         worksheet.write(row, 1, item['courseId'])
         worksheet.write(row, 2, item['productName'])
         worksheet.write(row, 3, item['productType'])
@@ -145,10 +128,9 @@ if __name__ == '__main__':
 
     totalPageCount = get_json(1)['result']['query']['totlePageCount'] #获取总页数
 
-'''
+
     #遍历每一页
     for index in range(totalPageCount):
         main(index)
     workbook.close()
     print('执行结束')
-    '''
