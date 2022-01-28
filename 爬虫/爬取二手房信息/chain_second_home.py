@@ -78,15 +78,12 @@ class HomeSpider():
         floor_list = []
         style_list = []
         for i in info:
-            print(i)
             x = i.split('|')
             room_list.append(x[0])
             sqaure_list.append(x[1])
             dir_list.append(x[2])
             floor_list.append(x[4])
             style_list.append(x[5])
-            print(x[5])
-            print(x[6])
         info_list.append(room_list)
         info_list.append(sqaure_list)
         info_list.append(dir_list)
@@ -130,6 +127,12 @@ class HomeSpider():
 
             # 房子信息
             info_all = html.xpath('//*[@id="content"]/div[1]/ul/li/div[1]/div[3]/div/text()')
+
+            # 房子价格
+            price_all = html.xpath('//*[@id="content"]/div[1]/ul/li/div[1]/div[6]/div[1]/span/text()')
+
+            # 均价
+            ave_price_all = html.xpath('//*[@id="content"]/div[1]/ul/li/div[1]/div[6]/div[2]/span/text()')
             '''
             #获取房子面积
             square_all = html.xpath('//*[@id="content"]/div[1]/div[1]/div/div/p[2]/text()[5]')
@@ -146,6 +149,8 @@ class HomeSpider():
             big_region_list = self.remove_spaces(big_region_all)
             small_region_list = self.remove_spaces(small_region_all)
             info_list = self.remove_spaces(info_all)
+            price_list = self.remove_spaces(price_all)
+            ave_price_list = self.remove_spaces(ave_price_all)
             info_list_sub = self.divide(info_list)
          #   region_list = self.combined_regin(big_region_all,small_region_all)
          #   square_list = self.remove_spaces(square_all)
@@ -157,11 +162,12 @@ class HomeSpider():
                          '面积':info_list_sub[1],
                          '朝向':info_list_sub[2],
                          '楼层':info_list_sub[3],
-                         '房子类型':info_list_sub[4]}
+                         '房子类型':info_list_sub[4],
+                         '价格（万）':price_list,
+                         '均价':ave_price_list}
             print('写入第'+str(i)+'页数据！')
             df = pandas.DataFrame(data_page)
             df.to_csv('{}二手房信息.csv'.format(city),mode = 'a',encoding='utf_8_sig',index=None)
-            break
 
     def start(self,page_all,city):
         loop = asyncio.get_event_loop() #创建loop对象
